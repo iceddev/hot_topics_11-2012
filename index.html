@@ -1,19 +1,19 @@
-<!doctype html>  
+<!doctype html>
 <html lang="en">
-  
+
   <head>
     <meta charset="utf-8">
-    
-    <title>reveal.js - The HTML Presentation Framework</title>
+
+    <title>Canvas, WebAudio, WebRTC, WebGL APIs - Iced Dev - DesertJS</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    
+
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    
+
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/default.css" id="theme">
 
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="lib/css/zenburn.css">
     <link rel="stylesheet" href="css/jsvm.css">
     <link rel="stylesheet" href="css/prism-dark.css" />
-      <script src="js/prism-es6.js"></script>
+    <script src="js/prism-es6.js"></script>
 
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
     <script>
@@ -33,15 +33,15 @@
     <![endif]-->
 
     <style>
-.orange .state-background {
-    background: #f1622f;
-}
-</style>
+      .orange .state-background {
+        background: #f1622f;
+      }
+    </style>
 
   </head>
-  
+
   <body>
-    
+
     <div class="reveal">
 
       <!-- Any section element inside of this container is displayed as a slide -->
@@ -51,17 +51,12 @@
           <h1>Desert JS</h1>
           <h3>Oct 13, 2012</h3>
         </section>
-        
+
         <section>
           <h2>WhomTF ?</h2>
           <img src="images/luiscartoon3.jpg" style="border-radius: 15px; border: 0;">
           <h3>Luis Montes</h3>
           <a href="http://twitter.com/monteslu"><span>@MONTESLU</span></a>
-          
-
-          <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-          </aside>
         </section>
 
         <section>
@@ -69,395 +64,163 @@
           <img src="images/twit_pic_blaine.png" style="border-radius: 15px; border: 0;">
           <h3>Blaine Bublitz</h3>
           <a href="http://twitter.com/BlaineBublitz"><span>@BlaineBublitz</span></a>
-          
-
-          <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-          </aside>
         </section>
 
         <section>
           <img src="images/icedlogo.png">
-          
-
-          <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-          </aside>
         </section>
-
-
-        <section>
-          <h2>Modular Javascript</h2>
-          <h3>Why bother? </h3>
-          
-          <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-          </aside>
-        </section>
-
-
 
         <!-- Example of nested vertical slides -->
         <section>
           <section>
-            <h2>Include some blocking scripts...</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-&lt;!-- this should locate here because some lib using it --&gt;
-&lt;script src="fsConnectionParams.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;script src="/FSSDK/3plibs/jquery-1.7.1.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/FSSDK/3plibs/jquery-plugins.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/FSSDK/3plibs/underscore-min.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/FSSDK/3plibs/backbone-min.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;!-- Load up the FSSDK and it supporting code --&gt;
-&lt;script src="/FSSDK/FSSDK.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/FSSDK/FSSDK.MeetingRoom.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/FSSDK/FSSDK.Templates.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/GSSDK/GSSDK.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/FSSDK/FSSDK.Notifier.js" type="text/javascript"&gt;&lt;/script&gt;
-          </code></pre>
+            <h2>Web Audio API</h2>
+            <h3>Play Sounds like it's 1995</h3>
+            <img src="images/goes_to_11.jpg" />
           </section>
 
           <section>
-            <h2>And some more...</h2>
+            <h2>Get a reference to the Web Audio context</h2>
             <pre class="language-javascript"><code class="language-javascript">
-&lt;!-- Store System --&gt;
-&lt;script src="/FSSDK/3plibs/iscroll.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="/FSSDK/FSSDK.Store.js" type="text/javascript"&gt;&lt;/script&gt;
+var audioContext;
 
-&lt;!-- Avatar System --&gt;
-&lt;script src="/FSSDK/FSSDK.Avatar.js" type="text/javascript"&gt;&lt;/script&gt;
+// Try/Catch incase it doesn't exist (FF/IE)
 
-&lt;!-- Various lib files --&gt;
-&lt;script src="lib/json2.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FSWindows.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.CardLib.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FSCards.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/DominionUI.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/iscroll.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/jquery.tools.tabs.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;!-- DeckBuilder --&gt;
-&lt;script src="lib/FS.DeckBuilder.Lib.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.DeckBuilder.js" type="text/javascript"&gt;&lt;/script&gt;
-
-          </code></pre>
+try {
+  audioContext = new webkitAudioContext();
+} catch(e) {
+  alert('Web Audio API is not supported in this browser');
+}
+</code></pre>
           </section>
 
-
           <section>
-            <h2>And some more...</h2>
+            <h2>How are we getting sounds?</h2>
             <pre class="language-javascript"><code class="language-javascript">
-&lt;!-- Meeting room --&gt;
-&lt;script src="lib/FS.MeetingRoom.Dominion.Lib.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.MeetingRoom.Dominion.js" type="text/javascript"&gt;&lt;/script&gt;
+var soundBuffers = {};
 
-&lt;script src="lib/FS.LaunchScreen.Template.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.LaunchScreenLib.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.LaunchScreen.Redeem.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.LaunchScreen.js" type="text/javascript"&gt;&lt;/script&gt;
+var loadSound = function(name, url) {
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+  // Web Audio is binary (not text) - we need an arraybuffer
+  request.responseType = 'arraybuffer';
 
-&lt;script src="lib/FS.Registration.Template.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.RegistrationLib.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.Registration.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;script src="lib/fs.signin.Template.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/fs.signin.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;script src="lib/FS.ResultScreen.Template.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.ResultScreen.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/scrollability.min.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;script src="lib/currencyClient.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;!-- game client code. --&gt;
-&lt;script src="DominionGameClient.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="DominionClient.js" type="text/javascript"&gt;&lt;/script&gt;
-
-          </code></pre>
+  // Decode asynchronously
+  request.onload = function() {
+    if(audioContext){
+      audioContext.decodeAudioData(
+        request.response, function(buffer){
+          soundBuffers[name] = buffer;
+        }, onError);
+    }
+  }
+  request.send();
+};
+</code></pre>
           </section>
 
-
-
           <section>
-            <h2>And some more...</h2>
+            <h2>Now, let's play the sound!</h2>
             <pre class="language-javascript"><code class="language-javascript">
-
-&lt;!-- START Campaigns merge --&gt;
-&lt;script type="text/javascript" src="./campaignClient.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./lib/caat.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./lib/kwiktools.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./lib/vhontools.js"&gt;&lt;/script&gt;
-
-&lt;!-- COMMON KwikTools Layouts --&gt;
-&lt;script type="text/javascript" src="./layout/map_region_0_1_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_1_1_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_1_2_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_1_3_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_2_1_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_2_2_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_2_3_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_3_1_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_3_2_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_3_3_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_4_1_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_4_2_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_4_3_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_5_1_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/map_region_5_2_1024x768.js"&gt;&lt;/script&gt;
-&lt;!-- CUSTOM KwikTools Layouts at 1024x768 size --&gt;
-&lt;script type="text/javascript" src="./layout/map_world_1_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/campaign_battle_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/ui_pregame_dialog_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/ui_playerpad_max_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/ui_world_dialog_1024x768.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/tips_adventures_1024x768.js"&gt;&lt;/scr
-
-          </code></pre>
+var playSound = function(name) {
+  if(audioContext){
+    // creates a sound source
+    var soundSource = audioContext.createBufferSource();
+    // tell the source which sound to play
+    soundSource.buffer = soundBuffers[name];
+    // connect the source to the context's destination
+    soundSource.connect(audioContext.destination);
+    // play the source now
+    soundSource.noteOn(0);
+  }
+};
+</code></pre>
           </section>
 
+          <section>
+            <h2>Use the functions</h2>
+            <pre class="language-javascript"><code class="language-javascript">
+loadSound('wee', 'demos/sounds/wee.wav');
+loadSound('yipee', 'demos/sounds/yipee.wav');
+loadSound('yahoo', 'demos/sounds/yahoo.wav');
+loadSound('pop', 'demos/sounds/pop.wav');
+
+playSound('wee');
+playSound('yipee');
+playSound('yahoo');
+playSound('pop');
+</code></pre>
+          </section>
 
           <section>
-            <h2>And some more.</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-
-&lt;!-- CUSTOM KwikTools Layouts at 960x640 size --&gt;
-&lt;script type="text/javascript" src="./layout/map_world_1_960x640.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/campaign_battle_960x640.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/ui_pregame_dialog_960x640.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/ui_playerpad_max_960x640.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/ui_world_dialog_960x640.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./layout/tips_adventures_960x640.js"&gt;&lt;/script&gt;
-&lt;!-- Language Data --&gt;
-&lt;script type="text/javascript" src="./data_languages/en/strings_adventures_catalog.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./data_languages/en/strings_adventures_story.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="./data_languages/en/strings_tutorial.js"&gt;&lt;/script&gt;
-&lt;!-- Tutorial Data (World Map) --&gt;
-&lt;script type="text/javascript" src="./data_campaign/tutorial_config_1.js"&gt;&lt;/script&gt;
-
-&lt;script src="lib/AnalyticsEventManager.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/LaunchScreenAnalyticsWrapper.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/LayoutSettings.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/ScreenScaling.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.Help.js" type="text/javascript"&gt;&lt;/script&gt;
-&lt;script src="lib/FS.Advertising.js" type="text/javascript"&gt;&lt;/script&gt;
-
-&lt;script src="lib/add2home.js" type="text/javascript"&gt;&lt;/script&gt;
-          </code></pre>
-
+            <h2>Cheesy Demo #2</h2>
+            <iframe src="demos/webaudio.html"></iframe>
           </section>
         </section>
-
-
-
 
         <section>
-
           <h3>Surely there is a CPU architecture to help? </h3>
-          
-          <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-          </aside>
         </section>
-
-
 
         <section>
           <h1>AMD</h1>
-          <img src="images/amd-six-core1.jpg">
-          <h3>Aysnchronous Module Definition</h3>
-          
 
           <aside class="notes">
             Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
           </aside>
         </section>
 
-
         <section>
           <h2>Why AMD?</h2>
-          <ul >
-            <li class="fragment" sytle="color: white;">No globals!</li>
-            <li class="fragment" sytle="color: white;">Modules can be downloaded asynchronously and concurrently</li>
-            <li class="fragment" sytle="color: white;">Dependency management</li>
-            <li class="fragment" sytle="color: white;">Simplify the build process</li>
-          </ul>
         </section>
 
         <section>
           <h2>AMD Implementations</h2>
-          <ul>
-            <li><a href="https://github.com/unscriptable/curl">Curl</a></li>
-            <li><a href="http://dojotoolkit.org/reference-guide/1.8/loader/amd.html">Dojo Loader</a></li>
-            <li><a href="http://requirejs.org/">RequireJS</a></li>            
-          </ul>
         </section>
-
-
 
         <section>
           <h2>require()</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-require(
-  configuration, // (optional; object) 
-  dependencies,  // (optional; array of strings) 
-  callback       // (optional; function) 
-)
-          </code></pre>
         </section>
 
         <section>
           <h2>require() example</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-require([ "my/app", "other/lib" ], function(app, otherLib){
-  // do something with app and otherLib...
-});
-          </code></pre>
         </section>
 
         <section>
           <h2>require() with a config</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-require({   
-  baseUrl: "js/",   
-  packages: [     
-    { name: "dojo", location: "lib/dojo" },     
-    { name: "dijit", location: "lib/dijit" },     
-    { name: "dojox", location: "lib/dojox" },     
-    { name: "my", location: "my" },     
-    { name: "util", location: "util" },     
-    { name: "external", location: "http://foo.com/external" }   
-  ] 
-},
-[ "my/app", "dojo/_lang" ], 
-function(app, lang){
-  // do something with app and lang...
-});
-          </code></pre>
         </section>
-
-
-        
 
         <section>
           <h2>define()</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-define(
-  moduleId,      // (optional; string) optional, but DON'T use !!!
-  dependencies,  // (optional; array of strings)
-  factory        // (function or value)
-)
-          </code></pre>
         </section>
-
 
         <section>
           <h2>define() example: app/addOne</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-define(
-  [],
-  function(){
-    var a = 1;
-    var addOne = function(num){
-      return a + num;
-    };
-
-    return addOne;
-  }
-)
-          </code></pre>
         </section>
 
         <section>
           <h2>require() using app/addOne</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-require(
-  ['app/addOne'],
-  function(addOne){
-    console.log(addOne(2)); // 3
-  }
-)
-          </code></pre>
         </section>
 
         <section>
           <h2>define() example: app/utils</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-define(
-  [],
-  function(){
-    var a = 1;
-    var utils = {
-      
-      addOne: function(num){
-        return num + a;
-      },
-      add: function(num1, num2){
-        return num1 + num2;
-      }
-
-    };
-  
-    return utils;
-  }
-)
-          </code></pre>
         </section>
 
         <section>
           <h2>require() using app/utils</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-require(
-  ['app/utils'],
-  function(utils){
-    console.log(utils.addOne(2)); // 3
-    console.log(utils.add(1,2)); // 3
-  }
-)
-          </code></pre>
         </section>
-
-
-
-
 
         <section>
           <h2>define() just a static/cached object</h2>
-          <pre class="language-javascript"><code class="language-javascript">
-define(
-  {
-    a: 1
-  }
-)
-          </code></pre>
         </section>
-
-
-
 
         <section>
           <h1>Plugins</h1>
           <h2>Can be used to extend the loader to support loading resources other than AMD modules</h2>
         </section>
 
-
         <section>
           <h1>Dojo Plugin examples</h1>
-          <pre class="language-javascript"><code class="language-javascript">
-require(
-  [ "my/app", "dojo/text!myTemplate.html", "dojo/domReady!"  ], 
-  function(app, myTemplate){
-    // do something with app and myTemplate after page loaded...
-  }
-);
-          </code></pre>
         </section>
-
-
-
-
-
 
         <section>
           <h1>THE END</h1>
@@ -465,21 +228,21 @@ require(
         </section>
 
       </div>
-      
+
     </div>
 
     <script src="lib/js/head.min.js"></script>
     <script src="js/reveal.min.js"></script>
 
     <script>
-      
+
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
         controls: true,
         progress: true,
         history: true,
-        
+
         theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
         transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
@@ -494,7 +257,7 @@ require(
           { src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } }
         ]
       });
-      
+
     </script>
 
   </body>

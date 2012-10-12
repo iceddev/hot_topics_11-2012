@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Canvas, WebAudio, WebRTC, WebGL APIs - Iced Dev - DesertJS</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <style>
+      button {
+        font-size: 30px;
+      }
+    </style>
+
+    <script>
+      var onError = function(){
+        console.error(arguments);
+      };
+
+      var audioContext;
+
+      // Try/Catch incase it doesn't exist (FF/IE)
+
+      try {
+        audioContext = new webkitAudioContext();
+      } catch(e) {
+        alert('Web Audio API is not supported in this browser');
+      }
+
+      var soundBuffers = {};
+
+      var loadSound = function(name, url) {
+        var request = new XMLHttpRequest();
+        request.open('GET', url, true);
+        // Web Audio is binary (not text) - we need an arraybuffer
+        request.responseType = 'arraybuffer';
+
+        // Decode asynchronously
+        request.onload = function() {
+          if(audioContext){
+            audioContext.decodeAudioData(
+              request.response, function(buffer){
+                soundBuffers[name] = buffer;
+              }, onError);
+          }
+        }
+        request.send();
+      };
+
+      var playSound = function(name) {
+        if(audioContext){
+          // creates a sound source
+          var soundSource = audioContext.createBufferSource();
+          // tell the source which sound to play
+          soundSource.buffer = soundBuffers[name];
+          // connect the source to the context's destination
+          soundSource.connect(audioContext.destination);
+          // play the source now
+          soundSource.noteOn(0);
+        }
+      };
+
+      window.addEventListener('load', function(e){
+        loadSound('wee', '/demos/sounds/wee.wav');
+        loadSound('yipee', '/demos/sounds/yipee.wav');
+        loadSound('yahoo', '/demos/sounds/yahoo.wav');
+        loadSound('pop', '/demos/sounds/pop.wav');
+
+        document.getElementById('playWee').addEventListener('click', function(e){
+          playSound('wee');
+        });
+        document.getElementById('playYipee').addEventListener('click', function(e){
+          playSound('yipee');
+        });
+        document.getElementById('playYahoo').addEventListener('click', function(e){
+          playSound('yahoo');
+        });
+        document.getElementById('playPop').addEventListener('click', function(e){
+          playSound('pop');
+        });
+        document.getElementById('playAll').addEventListener('click', function(e){
+          playSound('wee');
+          playSound('yipee');
+          playSound('yahoo');
+          playSound('pop');
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <button id="playWee">Wee</button>
+    <button id="playYipee">Yipee</button>
+    <button id="playYahoo">Yahoo</button>
+    <button id="playPop">Pop</button>
+    <button id="playAll">All Sounds</button>
+  </body>
+</html>
