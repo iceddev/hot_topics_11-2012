@@ -60,7 +60,7 @@
         </section>
 
         <section>
-          <h2>WhomTF ?</h2>
+          <h2>WhomTF2 ?</h2>
           <img src="images/twit_pic_blaine.png" style="border-radius: 15px; border: 0;">
           <h3>Blaine Bublitz</h3>
           <a href="http://twitter.com/BlaineBublitz"><span>@BlaineBublitz</span></a>
@@ -68,6 +68,69 @@
 
         <section>
           <img src="images/icedlogo.png">
+        </section>
+
+        <section>
+          <section>
+            <h2>Canvas</h2>
+            <h3>Now, we can paint, too!</h3>
+            <img src="images/bob_ross.jpg" />
+          </section>
+
+          <section>
+            <h2>Canvas Creation</h2>
+            <pre class="language-html"><code class="language-html">&lt;canvas id="myCanvas" /&gt;</code></pre>
+            Default sizes: height="150" and width="300"
+          </section>
+
+          <section>
+            <h2>Setting our own height &amp; width</h2>
+            <pre class="language-javascript"><code class="language-javascript">
+var canvas = document.getElementById('myCanvas');
+
+canvas.setAttribute('height', '450');
+canvas.setAttribute('width', '450');
+</code></pre>
+            Setting height or width clears canvas
+          </section>
+
+          <section>
+            <h2>But I want to draw!</h2>
+            <pre class="language-javascript"><code class="language-javascript">
+var context = canvas.getContext('2d');
+// Can also get 3d context (WebGL)
+
+context.fillStyle = '#10B7FB';
+// (X, Y, width, height)
+context.fillRect(0, 0, 450, 450);
+
+context.strokeStyle = '#B1E3FE';
+context.lineWidth = 20;
+context.strokeRect(450 / 4, 450 / 4, 450 / 2, 450 / 2);
+</code></pre>
+          </section>
+
+          <section>
+            <h2>Cheesy Demo #1</h2>
+            <iframe src="/demos/canvas1.html"></iframe>
+          </section>
+
+          <section>
+            <h2>What about images?!</h2>
+            <pre class="language-javascript"><code class="language-javascript">
+// Load an image
+var img = new Image();
+img.onload = function(){
+  context.drawImage(img, 0, 0);
+};
+img.src="/images/cheese.jpg";
+</code></pre>
+          </section>
+
+          <section>
+            <h2>Cheesy Demo #2</h2>
+            <iframe src="/demos/canvas2.html"></iframe>
+          </section>
         </section>
 
         <!-- Example of nested vertical slides -->
@@ -139,10 +202,10 @@ var playSound = function(name) {
           <section>
             <h2>Use the functions</h2>
             <pre class="language-javascript"><code class="language-javascript">
-loadSound('wee', 'demos/sounds/wee.wav');
-loadSound('yipee', 'demos/sounds/yipee.wav');
-loadSound('yahoo', 'demos/sounds/yahoo.wav');
-loadSound('pop', 'demos/sounds/pop.wav');
+loadSound('wee', '/demos/sounds/wee.wav');
+loadSound('yipee', '/demos/sounds/yipee.wav');
+loadSound('yahoo', '/demos/sounds/yahoo.wav');
+loadSound('pop', '/demos/sounds/pop.wav');
 
 playSound('wee');
 playSound('yipee');
@@ -152,7 +215,7 @@ playSound('pop');
           </section>
 
           <section>
-            <h2>Cheesy Demo #2</h2>
+            <h2>Cheesy Demo #3</h2>
             <iframe src="demos/webaudio.html"></iframe>
           </section>
         </section>
