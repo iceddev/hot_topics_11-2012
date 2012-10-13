@@ -305,6 +305,7 @@ img.src = imgData;
           </section>
         </section>
 
+      <section>
         <section>
           <h2>WebGL</h2>
           <h3>Taking things to a whole new dimension</h3>
@@ -316,10 +317,91 @@ img.src = imgData;
         </section>
 
         <section>
+          <h2>WebGL is...</h2>
+          <h3>Javascript implementation of the OpenGL ES 2.0 Spec</h3>
+        </section>
+
+        <section>
+          <h2>WebGL is Easy!</h2>
+          <h3>Just read the spec</h3>
+          <a href="https://www.khronos.org/registry/webgl/specs/1.0/">https://www.khronos.org/registry/webgl/specs/1.0</a>
+
+        </section>
+
+        <section>
+        <h2>Use THREE.js</h2>
+        <h3>A scene</h3>
+        <h3>A renderer</h3>
+        <h3>A camera</h3>
+        <h3>An object or two (with materials)</h3>
+        </section>
+
+
+          <section>
+            <h2>Let's see some code</h2>
+           <pre class="language-javascript"><code class="language-javascript">
+renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+camera.position.z = 400;
+
+scene = new THREE.Scene();
+
+var geometry = new THREE.CubeGeometry( 200, 200, 200 );
+
+var texture = THREE.ImageUtils.loadTexture( 'textures/crate.gif' );
+texture.anisotropy = renderer.getMaxAnisotropy();
+
+var material = new THREE.MeshBasicMaterial( { map: texture } );
+
+mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
+
+//put this in a requestAnimationFrame:
+renderer.render( scene, camera );
+</code></pre>
+          </section>
+
+        <section>
+          <h2>Demo</h2>
+          <a target="_blank" href="demos/webgl_geometry_cube.html">Everyone loves Crates</a>
+        </section>
+
+
+        <section>
+          <h2>Mashups</h2>
+          <a target="_blank" href="http://azprogrammer.com/gtugsglobe">Something slightly more useful</a>
+        </section>
+
+        <section>
+          <h2>Putting things together</h2>
+          <a target="_blank" href="http://www.airtightinteractive.com/demos/js/webcammesh/">WebRTC + WebGL</a>
+        </section>
+
+        
+
+
+      </section>
+
+      <section>
+          <h2>Other HTML5 topics</h2>
+          <ul>
+            <li>Web Workers</li>
+            <li>Device Orientation</li>
+            <li><a href="https://github.com/mrdoob/three.js">THREE.js</a></li>            
+          </ul>
+        </section>
+
+
+        <section>
           <h2>Some Resources</h2>
           <ul>
             <li><a href="https://github.com/iceddev/desertjs_html5">This Source + Demos</a></li>
             <li><a href="http://html5rocks.com/">HTML5 ROCKS!</a></li>
+            <li><a href="https://github.com/mrdoob/three.js">THREE.js</a></li>            
+            <li><a href="https://caniuse.com">Can I use?</a></li>  
           </ul>
         </section>
 
