@@ -4,13 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Canvas, WebAudio, WebRTC, WebGL APIs - Iced Dev - DesertJS</title>
-
-    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-    <meta name="author" content="Hakim El Hattab">
-
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Canvas, Web Audio, WebRTC, WebGL APIs - Iced Dev - DesertJS</title>
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
@@ -85,7 +79,7 @@
 
           <section>
             <h2>Canvas Creation</h2>
-            <pre class="language-html"><code class="language-html">&lt;canvas id="myCanvas" /&gt;</code></pre>
+            <pre class="language-html"><code class="language-html">&lt;canvas id="myCanvas"&gt;&lt;/canvas&gt;</code></pre>
             Default sizes: height="150" and width="300"
           </section>
 
@@ -231,6 +225,83 @@ playSound('pop');
             <h2>WebRTC</h2>
             <h3>The final blow to Flash</h3>
             <img src="images/flash-dead.png">
+          </section>
+
+          <section>
+            <h2>The &lt;video&gt; element</h2>
+            <pre class="language-html"><code class="language-html">&lt;video id="myVideo" autoplay&gt;&lt;/video&gt;</code></pre>
+          </section>
+
+          <section>
+            <h2>The pain of vendor prefixing</h2>
+            <pre class="language-javascript"><code class="language-javascript">
+navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia;
+
+window.URL = window.URL || window.webkitURL;
+</code></pre>
+          </section>
+
+          <section>
+            <h2>Request access to user's camera</h2>
+            <pre class="language-javascript"><code class="language-javascript">
+var video;
+navigator.getUserMedia({
+  video: true
+}, function(localMediaStream) {
+  video = document.getElementById("myVideo");
+  // Create blob url with media stream
+  video.src = window.URL.createObjectURL(localMediaStream);
+}, function(error) {
+  console.log(error);
+});
+</code></pre>
+          </section>
+
+          <section>
+            <h2>Cheesy Demo #4</h2>
+            <a target="_blank" href="/demos/webrtc.html">Follow the yellow brick road!</a>
+          </section>
+
+          <section>
+            <h2>Capture something!</h2>
+            <img src="https://pbs.twimg.com/media/A5DdmyqCMAAGZ2s.png">
+          </section>
+
+          <section>
+            <h2>How can we capture crazy things?</h2>
+            <pre class="language-html"><code class="language-html">&lt;canvas id="canvas"&gt;&lt;/canvas&gt;</code></pre>
+            <pre class="language-javascript"><code class="language-javascript">
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext('2d');
+
+context.drawImage(video, 0, 0);
+</code></pre>
+Yes, it is actually that easy!
+          </section>
+
+          <section>
+            <h2>Cheesy Demo #5</h2>
+            <a target="_blank" href="/demos/webrtc.html">Gangnam Style!</a>
+          </section>
+
+          <section>
+            <h2>But how do we save it?</h2>
+            <pre class="language-html"><code class="language-html">&lt;img id="save" /&gt;</code></pre>
+            <pre class="language-javascript"><code class="language-javascript">
+// Base64 encoded url of image
+var imgData = canvas.toDataURL();
+
+var img = document.getElementById('save');
+img.src = imgData;
+</code></pre>
+          </section>
+
+          <section>
+            <h2>Cheesy Demo #6</h2>
+            <a target="_blank" href="/demos/webrtc.html">Embarrass your friends!</a>
           </section>
         </section>
 
