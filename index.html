@@ -340,18 +340,18 @@ img.src = imgData;
           <section>
             <h2>Let's see some code</h2>
            <pre class="language-javascript"><code class="language-javascript">
-renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
-camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
+var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 camera.position.z = 400;
 
-scene = new THREE.Scene();
+var scene = new THREE.Scene();
 
 var geometry = new THREE.CubeGeometry( 200, 200, 200 );
 
-var texture = THREE.ImageUtils.loadTexture( 'textures/crate.gif' );
+var texture = THREE.ImageUtils.loadTexture('textures/crate.gif');
 texture.anisotropy = renderer.getMaxAnisotropy();
 
 var material = new THREE.MeshBasicMaterial( { map: texture } );
@@ -388,6 +388,7 @@ renderer.render( scene, camera );
       <section>
           <h2>Other HTML5 topics</h2>
           <ul>
+            <li>Web Sockets</li>
             <li>Web Workers</li>
             <li>Device Orientation</li>
             <li>Fullscreen</li>
