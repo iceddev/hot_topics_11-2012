@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Canvas, Web Audio, WebRTC, WebGL APIs - Iced Dev - DesertJS</title>
+    <title>Iced Dev: Empire Business</title>
 
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
@@ -30,6 +30,75 @@
       .orange .state-background {
         background: #f1622f;
       }
+
+      @-webkit-keyframes fade-in-out {
+        0%   { opacity: 0; }
+        25%   { opacity: 0; }
+        50%  { opacity: 1; }
+        75%  { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      @-moz-keyframes fade-in-out {
+        0%   { opacity: 0; }
+        25%   { opacity: 0; }
+        50%  { opacity: 1; }
+        75%  { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      @-o-keyframes fade-in-out {
+        25%   { opacity: 0; }
+        50%  { opacity: 1; }
+        75%  { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      @keyframes fade-in-out {
+        0%   { opacity: 0; }
+        25%   { opacity: 0; }
+        50%  { opacity: 1; }
+        75%  { opacity: 1; }
+        100% { opacity: 0; }
+      }
+
+      @-webkit-keyframes fade-out-in {
+        25%   { opacity: 1; }
+        50%  { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-moz-keyframes fade-out-in {
+        25%   { opacity: 1; }
+        50%  { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-o-keyframes fade-out-in {
+        25%   { opacity: 1; }
+        50%  { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @keyframes fade-out-in {
+        25%   { opacity: 1; }
+        50%  { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      .fading {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .out-in {
+        -webkit-animation: fade-out-in 5s infinite;
+        -moz-animation: fade-out-in 5s infinite;
+        -o-animation: fade-out-in 5s infinite;
+        animation: fade-out-in 5s infinite;
+      }
+
+      .in-out {
+        -webkit-animation: fade-in-out 5s infinite;
+        -moz-animation: fade-in-out 5s infinite;
+        -o-animation: fade-in-out 5s infinite;
+        animation: fade-in-out 5s infinite;
+      }
     </style>
 
   </head>
@@ -42,22 +111,14 @@
       <div class="slides">
 
         <section>
-          <h1>Desert JS</h1>
-          <h3>Oct 13, 2012</h3>
+          <img src="images/jesse-walt-house.jpg" class="fading out-in" />
+          <img src="images/iceddev-halloween.jpg" class="fading in-out" />
         </section>
 
         <section>
-          <h2>WhomTF ?</h2>
-          <img src="images/luiscartoon3.jpg" style="border-radius: 15px; border: 0;">
-          <h3>Luis Montes</h3>
-          <a href="http://twitter.com/monteslu"><span>@MONTESLU</span></a>
-        </section>
-
-        <section>
-          <h2>WhomTF2 ?</h2>
-          <img src="images/twit_pic_blaine.png" style="border-radius: 15px; border: 0;">
-          <h3>Blaine Bublitz</h3>
-          <a href="http://twitter.com/BlaineBublitz"><span>@BlaineBublitz</span></a>
+          <h1>Iced Dev:</h1>
+          <h1>Empire Business</h1>
+          <h3>Nov 15, 2012</h3>
         </section>
 
         <section>
@@ -68,350 +129,97 @@
           <section>
             <img src="images/hsllogo.png">
           </section>
-
-          <section>
-            <h2>December 1st, Location: TBA</h2>
-            <img src="images/hackphx.png">
-            <a href="http://hackphx.org">hackphx.org</a>
-          </section>
         </section>
 
         <section>
           <section>
-            <h2>Canvas</h2>
-            <h3>Now, we can paint, too!</h3>
-            <img src="images/bob_ross.jpg" />
+            <h2>We cook...</h2>
+            <img src="images/blaine-halloween.jpg" />
           </section>
 
           <section>
-            <h2>Canvas Creation</h2>
-            <pre class="language-html"><code class="language-html">&lt;canvas id="myCanvas"&gt;&lt;/canvas&gt;</code></pre>
-            Default sizes: height="150" and width="300"
+            <h2>...err, code...</h2>
+            <img src="images/iced-coding.jpg" />
           </section>
 
           <section>
-            <h2>Setting our own height &amp; width</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-var canvas = document.getElementById('myCanvas');
-
-canvas.setAttribute('height', '450');
-canvas.setAttribute('width', '450');
-</code></pre>
-            Setting height or width clears canvas
-          </section>
-
-          <section>
-            <h2>But I want to draw!</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-var context = canvas.getContext('2d');
-// Can also get 3d context (WebGL)
-
-context.fillStyle = '#10B7FB';
-// (X, Y, width, height)
-context.fillRect(0, 0, 450, 450);
-
-context.strokeStyle = '#B1E3FE';
-context.lineWidth = 20;
-context.strokeRect(450 / 4, 450 / 4, 450 / 2, 450 / 2);
-</code></pre>
-          </section>
-
-          <section>
-            <h2>Cheesy Demo #1</h2>
-            <iframe src="demos/canvas1.html"></iframe>
-          </section>
-
-          <section>
-            <h2>What about images?!</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-// Load an image
-var img = new Image();
-img.onload = function(){
-  context.drawImage(img, 0, 0);
-};
-img.src = "images/cheese.jpg";
-</code></pre>
-          </section>
-
-          <section>
-            <h2>Cheesy Demo #2</h2>
-            <iframe src="demos/canvas2.html"></iframe>
-          </section>
-        </section>
-
-        <!-- Example of nested vertical slides -->
-        <section>
-          <section>
-            <h2>Web Audio API</h2>
-            <h3>Play Sounds like it's 1995</h3>
-            <img src="images/goes_to_11.jpg" />
-          </section>
-
-          <section>
-            <h2>Get a reference to the Web Audio context</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-var audioContext;
-
-// Try/Catch incase it doesn't exist (FF/IE)
-
-try {
-  audioContext = new webkitAudioContext();
-} catch(e) {
-  alert('Web Audio API is not supported in this browser');
-}
-</code></pre>
-          </section>
-
-          <section>
-            <h2>How are we getting sounds?</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-var soundBuffers = {};
-
-var loadSound = function(name, url) {
-  var request = new XMLHttpRequest();
-  request.open('GET', url, true);
-  // Web Audio is binary (not text) - we need an arraybuffer
-  request.responseType = 'arraybuffer';
-
-  // Decode asynchronously
-  request.onload = function() {
-    if(audioContext){
-      audioContext.decodeAudioData(
-        request.response, function(buffer){
-          soundBuffers[name] = buffer;
-        }, onError);
-    }
-  }
-  request.send();
-};
-</code></pre>
-          </section>
-
-          <section>
-            <h2>Now, let's play the sound!</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-var playSound = function(name) {
-  if(audioContext){
-    // creates a sound source
-    var soundSource = audioContext.createBufferSource();
-    // tell the source which sound to play
-    soundSource.buffer = soundBuffers[name];
-    // connect the source to the context's destination
-    soundSource.connect(audioContext.destination);
-    // play the source now
-    soundSource.noteOn(0);
-  }
-};
-</code></pre>
-          </section>
-
-          <section>
-            <h2>Use the functions</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-loadSound('wee', '/demos/sounds/wee.wav');
-loadSound('yipee', '/demos/sounds/yipee.wav');
-loadSound('yahoo', '/demos/sounds/yahoo.wav');
-loadSound('pop', '/demos/sounds/pop.wav');
-
-playSound('wee');
-playSound('yipee');
-playSound('yahoo');
-playSound('pop');
-</code></pre>
-          </section>
-
-          <section>
-            <h2>Cheesy Demo #3</h2>
-            <iframe src="demos/webaudio.html"></iframe>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h2>WebRTC</h2>
-            <h3>The final blow to Flash</h3>
-            <img src="images/flash-dead.png">
-          </section>
-
-          <section>
-            <h2>The &lt;video&gt; element</h2>
-            <pre class="language-html"><code class="language-html">&lt;video id="myVideo" autoplay&gt;&lt;/video&gt;</code></pre>
-          </section>
-
-          <section>
-            <h2>The pain of vendor prefixing</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-navigator.getUserMedia = navigator.getUserMedia ||
-                         navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia ||
-                         navigator.msGetUserMedia;
-
-window.URL = window.URL || window.webkitURL;
-</code></pre>
-          </section>
-
-          <section>
-            <h2>Request access to user's camera</h2>
-            <pre class="language-javascript"><code class="language-javascript">
-var video;
-navigator.getUserMedia({
-  video: true
-}, function(localMediaStream) {
-  video = document.getElementById("myVideo");
-  // Create blob url with media stream
-  video.src = window.URL.createObjectURL(localMediaStream);
-}, function(error) {
-  console.log(error);
-});
-</code></pre>
-          </section>
-
-          <section>
-            <h2>Cheesy Demo #4</h2>
-            <a target="_blank" href="demos/webrtc.html">Follow the yellow brick road!</a>
-          </section>
-
-          <section>
-            <h2>Capture something!</h2>
+            <h2>...and, dance!</h2>
             <img src="images/gangnam_style.png" />
           </section>
 
-          <section>
-            <h2>How can we capture crazy things?</h2>
-            <pre class="language-html"><code class="language-html">&lt;canvas id="canvas"&gt;&lt;/canvas&gt;</code></pre>
-            <pre class="language-javascript"><code class="language-javascript">
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
+        </section>
 
-context.drawImage(video, 0, 0);
-</code></pre>
-Yes, it is actually that easy!
+        <section>
+          <h2>WhomTF ?</h2>
+          <div style="display: inline-block; margin: 0 20px;">
+            <img src="images/luiscartoon3.jpg" style="border-radius: 15px; border: 0;">
+            <h3>Luis Montes</h3>
+            <a href="http://twitter.com/monteslu"><span>@MONTESLU</span></a>
+          </div>
+
+          <div style="display: inline-block; margin: 0 20px;">
+            <img src="images/blaine_wine.jpg" style="border-radius: 15px; border: 0;">
+            <h3>Blaine Bublitz</h3>
+            <a href="http://twitter.com/BlaineBublitz"><span>@BlaineBublitz</span></a>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <h1>The Beginning</h1>
+            <img src="images/bb-handshake.jpg" />
           </section>
 
           <section>
-            <h2>Cheesy Demo #5</h2>
-            <a target="_blank" href="demos/webrtc.html">Gangnam Style!</a>
+            <h2>HTML5 Hackathon</h2>
+            <img src="images/html5-group.jpg" />
           </section>
 
           <section>
-            <h2>But how do we save it?</h2>
-            <pre class="language-html"><code class="language-html">&lt;img id="save" /&gt;</code></pre>
-            <pre class="language-javascript"><code class="language-javascript">
-// Base64 encoded url of image
-var imgData = canvas.toDataURL();
-
-var img = document.getElementById('save');
-img.src = imgData;
-</code></pre>
+            <h2>Collabo</h2>
+            <img src="images/drawitlive-hangout.jpg" />
           </section>
 
           <section>
-            <h2>Cheesy Demo #6</h2>
-            <a target="_blank" href="demos/webrtc.html">Embarrass your friends!</a>
+            <h2>Hipsters Don't Scale</h2>
+            <img src="images/hipsters-dont-scale.jpg" />
           </section>
         </section>
 
-      <section>
         <section>
-          <h2>WebGL</h2>
-          <h3>Taking things to a whole new dimension</h3>
-          <img src="images/3d_tiger.jpg">
-
-          <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-          </aside>
-        </section>
-
-        <section>
-          <h2>WebGL is...</h2>
-          <h3>Javascript implementation of the OpenGL ES 2.0 Spec</h3>
-        </section>
-
-        <section>
-          <h2>WebGL is Easy!</h2>
-          <h3>Just read the spec</h3>
-          <a href="https://www.khronos.org/registry/webgl/specs/1.0/">https://www.khronos.org/registry/webgl/specs/1.0</a>
-
-        </section>
-
-        <section>
-        <h2>Use THREE.js</h2>
-        <h3>A scene</h3>
-        <h3>A renderer</h3>
-        <h3>A camera</h3>
-        <h3>An object or two (with materials)</h3>
-        </section>
-
+          <section>
+            <h1>Typical Day</h1>
+            <img src="images/walter-apron.jpg" />
+          </section>
 
           <section>
-            <h2>Let's see some code</h2>
-           <pre class="language-javascript"><code class="language-javascript">
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+            <h1>Busy!</h1>
+            <img src="images/hsl-busy-day.jpg" />
+          </section>
+        </section>
 
-var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-camera.position.z = 400;
-
-var scene = new THREE.Scene();
-
-var geometry = new THREE.CubeGeometry( 200, 200, 200 );
-
-var texture = THREE.ImageUtils.loadTexture('textures/crate.gif');
-texture.anisotropy = renderer.getMaxAnisotropy();
-
-var material = new THREE.MeshBasicMaterial( { map: texture } );
-
-mesh = new THREE.Mesh( geometry, material );
-scene.add( mesh );
-
-//put this in a requestAnimationFrame:
-renderer.render( scene, camera );
-</code></pre>
+        <section>
+          <section>
+            <h2>Currently:</h2>
+            <img src="images/client_collage.png" />
           </section>
 
-        <section>
-          <h2>Demo</h2>
-          <a target="_blank" href="demos/webgl_geometry_cube.html">Everyone loves Crates</a>
+          <section>
+            <h2>Employees</h2>
+            <img src="images/badger-skinny-pete.jpg" />
+          </section>
+
+          <section>
+            <h2>Shirts!</h2>
+            <img src="images/jdd-shirt.jpg" />
+          </section>
         </section>
 
-
         <section>
-          <h2>Mashups</h2>
-          <a target="_blank" href="http://azprogrammer.com/gtugsglobe">Something slightly more useful</a>
-        </section>
-
-        <section>
-          <h2>Putting things together</h2>
-          <a target="_blank" href="http://www.airtightinteractive.com/demos/js/webcammesh/">WebRTC + WebGL</a>
-        </section>
-
-
-
-
-      </section>
-
-      <section>
-          <h2>Other HTML5 topics</h2>
-          <ul>
-            <li>Web Sockets</li>
-            <li>Web Workers</li>
-            <li>Device Orientation</li>
-            <li>Fullscreen</li>
-            <li>Mouse Lock</li>
-          </ul>
-        </section>
-
-
-        <section>
-          <h2>Some Resources</h2>
-          <ul>
-            <li><a href="https://github.com/iceddev/desertjs_html5">This Source + Demos</a></li>
-            <li><a href="http://html5rocks.com/">HTML5 ROCKS!</a></li>
-            <li><a href="https://github.com/mrdoob/three.js">THREE.js</a></li>
-            <li><a href="http://www.chromeexperiments.com">Chrome Experiments</a></li>
-            <li><a href="https://caniuse.com">Can I use?</a></li>
-          </ul>
+          <section>
+            <h1>The Empire</h1>
+            <img src="images/pile-of-money.jpg" />
+          </section>
         </section>
 
         <section>
